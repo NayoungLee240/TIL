@@ -124,6 +124,14 @@ origin  https://github.com/NayoungLee240/git-test.git (fetch)
 origin  https://github.com/NayoungLee240/git-test.git (push)
 ```
 
+* 원격 저장소를 삭제하기 위해 아래의 명령어를 사용한다.
+
+```bash
+$ git remote rm origin
+```
+
+
+
 ### 3. push
 
 ```bash
@@ -131,6 +139,8 @@ $ git push origin master
 ```
 
 * origin  원격 저장소의 master 브랜치로 push
+
+
 
 가장최신 상태의 환경으로 돌아오기(checkout)
 
@@ -156,4 +166,3 @@ $ git push origin master
 
   * push
 
-* 
