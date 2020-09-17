@@ -50,6 +50,8 @@ SELECT * FROM tables;
 
 [구글 링크](https://google.com)
 
+폴더 아래 링크 `./{폴더명}`
+
 ## 이미지
 
 ![뱁새2](C:\Users\이나영\Desktop\이미지\뱁새2.png)

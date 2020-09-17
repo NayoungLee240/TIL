@@ -166,3 +166,35 @@ $ git push origin master
 
   * push
 
+
+
+# 기타
+
+* git 폴더를 옮기거나 이름을 바꾸어도 된다.
+
+
+
+# 기술 블로그
+
+보통 깃허브 페이지스를 통해 무료 호스팅 서비스를 제공받고, 여기에 정적 파일생성기(static generatior)를 활용한다.
+
+MD> html,css, js로 변환해준다.
+
+서비스별로
+
+* jekyll
+  * ruby기반
+  * 오래된 것. 그래서 정보가 많음
+* gatsby
+  * node.js(js)
+  * react+graphQL>최신웹
+  * 가장 최신의것 그래서 정보가 많음
+
+
+
+# 추가
+
+* 지금까지 소스코드 옮겨보자
+  * DB
+  * Linux
+  * Java
