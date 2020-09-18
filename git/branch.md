@@ -182,6 +182,18 @@
    ```bash
    $ touch board.html
    #README.md 파일을 열어서 자유롭게 수정
+   $ git status
+   On branch feature/board
+   Changes not staged for commit:
+     (use "git add <file>..." to update what will be committed)
+     (use "git restore <file>..." to discard changes in working directory)
+     # 1) 동일파일 수정
+           modified:   README.md
+   
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+     # 2) 신규 작업
+           board.html
    $ git add .
    $ git commit -m 'board & README'
    $ git log --oneline
@@ -239,7 +251,9 @@
    # 유사 Working directory...
    # -> 충돌난 파일
    Unmerged paths:
-    ~~~~~
+    # 해결하고 add하세요!!!
+     (use "git add <file>..." to mark resolution)
+           both modified:   README.md
    ```
    
    
@@ -248,7 +262,7 @@
 7. 충돌 확인 및 해결
 
    ```bash
-   # code . 으로? 해결하고
+   # code . 으로 해결(폴더에서 우클릭>code)하고
    $ git add .
    ```
    
@@ -273,6 +287,19 @@
 
    ```bash
     $ git log --oneline --graph
+    *   63580b1 (HEAD -> master) Merge branch 'feature/board' into master
+   |\
+   | * dc27342 (feature/board) board & README
+   * | e9af78e Update README
+   |/
+   *   e84912e Merge branch 'feature/signout' into master
+   |\
+   | * f700edb Complete signout
+   * | 801facc Hotfix
+   |/
+   * a210f36 Complete test
+   * 3888136 Complete Test2
+   * cf28034 Init
    ```
    
    

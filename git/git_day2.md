@@ -63,7 +63,6 @@ $ git branch
 
 $ git checkout test
 Switched to branch 'test'
-
 ```
 
 
