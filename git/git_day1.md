@@ -92,7 +92,6 @@ Changes to be committed:
 $ touch b.txt
 $ git status
 On branch master
-
 No commits yet
 # staging 단계
 Changes to be committed:

@@ -1,32 +1,67 @@
 ### 상황 1. fast-foward
 
 > fast-foward는 feature 브랜치 생성된 이후 master 브랜치에 변경 사항이 없는 상황
+>
+> master의 head만 바뀌면 된다.
 
 1. feature/test branch 생성 및 이동
 
-   
+   ```bash
+   $ git checkout -b feature/test
+   (feature/test)
+   ```
 
 2. 작업 완료 후 commit
 
-   
+   ```bash
+   $ touch test.html
+   $ git add .
+   $ git commit -m 'Complete test'
+   $ git log --oneline
+   a210f36 (HEAD -> feature/test) Complete test
+   3888136 (master) Complete Test2
+   cf28034 Init
+   ```
 
 
 3. master 이동
 
-   
+   ```bash
+   $ git checkout master
+   Switched to branch 'master'
+   (master) $
+   ```
 
 
 4. master에 병합
 
-   
+   ```bash
+   $ git merge feature/test
+   Updating 3888136..a210f36
+   # Fast-foward!!!!
+   Fast-forward
+    test.html | 0
+    1 file changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 test.html
+   ```
 
 
 5. 결과 -> fast-foward (단순히 HEAD를 이동)
 
-   
+   ```bash
+   $ git log --oneline
+   a210f36 (HEAD -> master, feature/test) Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
 
 6. branch 삭제
 
+   ```bash
+   $ git branch -d feature/test
+   Deleted branch feature/test (was a210f36).
+   ```
+   
    
 
 ---
@@ -39,25 +74,57 @@
 
 1. feature/signout branch 생성 및 이동
 
-   
+   ```bash
+   $ git checkout -b feature/signout 
+   ```
 
 2. 작업 완료 후 commit
 
-   
+   ```bash
+   $ git signout.html
+   $ git add .
+   $ git commit -m 'Complet signout'
+   $ git log --oneline
+   f700edb (HEAD -> feature/signout) Complete signout
+   a210f36 (master) Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
 
 3. master 이동
 
-   
+   ```bash
+   $ git checkout master
+   $ git log --oneline
+   a210f36 (HEAD -> master) Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
 
 4. *master에 추가 commit 이 발생시키기!!*
 
    * **다른 파일을 수정 혹은 생성하세요!**
 
-   
+   ```bash
+   $ touch hotfix.html
+   $ git add .
+   $ git commit -m 'Hotfix'
+   $ git log --oneline
+   801facc (HEAD -> master) Hotfix
+   a210f36 Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
 
 5. master에 병합
 
-   
+   ```bash
+   $ git merge feature/signout
+   Merge made by the 'recursive' strategy.
+    signout.html | 0
+    1 file changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 signout.html
+   ```
 
 6. 결과 -> 자동으로 *merge commit 발생*
 
@@ -69,13 +136,27 @@
       
    * 커밋이  확인 해봅시다.
    
-
 7. 그래프 확인하기
 
-   
+   ```bash
+   $ git log --oneline --graph
+   *   e84912e (HEAD -> master) Merge branch 'feature/signout' into master
+   |\
+   | * f700edb (feature/signout) Complete signout
+   * | 801facc Hotfix
+   |/
+   * a210f36 Complete test
+   * 3888136 Complete Test2
+   * cf28034 Init
+   ```
 
 8. branch 삭제
 
+   ```bash
+   $ git branch -d feature/signout
+   Deleted branch feature/signout (was f700edb).
+   ```
+   
    
 
 ---
@@ -90,37 +171,87 @@
 
 1. feature/board branch 생성 및 이동
 
+   ```bash
+   $ git checkout -b feature/board
+   ```
+
    
 
 2. 작업 완료 후 commit
 
+   ```bash
+   $ touch board.html
+   #README.md 파일을 열어서 자유롭게 수정
+   $ git add .
+   $ git commit -m 'board & README'
+   $ git log --oneline
+   ```
+   
    
 
 
 3. master 이동
 
+   ```bash
+   $ git checkout master
+   ```
+   
    
 
 
 4. *master에 추가 commit 이 발생시키기!!*
 
    * **동일 파일을 수정 혹은 생성하세요!**
-   
+
+   ```bash
+   # README를 수정하고
+   $ git add .
+   $ git commit -m 'Update README'
+   $ git log --oneline
+   ```
 
    
 
 5. master에 병합
 
+   ```bash
+   $ git merge feature/board
+   # 자동 병합을 하고 있는데...
+   ```
+   
    
 
 
 6. 결과 -> *merge conflict발생*
 
+   ```bash
+   $ git status
+   On branch master
+   You have unmerged paths.
+   # 충돌을 고치고, commit
+     (fix conflicts and run "git commit")
+   # 병합을 취소하려면 다음과 같은 명령어
+     (use "git merge --abort" to)
+   # staging area
+   # -> 충돌이 나지 않은 파일
+   changes to be committed:
+    ~~~~
+   # 유사 Working directory...
+   # -> 충돌난 파일
+   Unmerged paths:
+    ~~~~~
+   ```
+   
    
 
 
 7. 충돌 확인 및 해결
 
+   ```bash
+   # code . 으로? 해결하고
+   $ git add .
+   ```
+   
    
 
 
@@ -138,12 +269,20 @@
       
    * 커밋이  확인 해봅시다.
    
-   
 9. 그래프 확인하기
 
-    
+   ```bash
+    $ git log --oneline --graph
+   ```
+   
+   
 
 
 10. branch 삭제
 
+    ```bash
+    $ git branch -d feature/board
+    Deleted branch feature/board (was f700edb).
+    ```
+    
     

@@ -1,3 +1,6 @@
-##  TIL list
+##  TIL Repositories
 
-* git 
+* git : 깃 수업 정리
+* algorithm : 알고리즘 문제 공부
+* 
+
