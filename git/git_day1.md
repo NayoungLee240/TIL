@@ -10,7 +10,7 @@
 
 ```bash
 $ git config --global user.name 'NayoungLee240'
-$ git congig --global user.email 'iny003@naver.com'
+$ git config --global user.email 'iny003@naver.com'
 ```
 
 * 추후에 commit을 하면, 작성한 사람(author)로 저장된다.
