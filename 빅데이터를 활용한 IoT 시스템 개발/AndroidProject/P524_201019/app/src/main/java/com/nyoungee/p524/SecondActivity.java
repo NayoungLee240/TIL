@@ -2,8 +2,10 @@ package com.nyoungee.p524;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -43,13 +45,41 @@ public class SecondActivity extends AppCompatActivity {
         list = new ArrayList<>();
         getData();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            ProgressDialog progressDialog;
-            
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                progressDialog = new ProgressDialog(SecondActivity.this);
+                AlertDialog.Builder builder= new AlertDialog.Builder(SecondActivity.this);
 
+                builder.setTitle(list.get(position).movieNm);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+//                                URL httpurl = null;
+//                                InputStream is = null;
+//                                try {
+//                                    httpurl = new URL(url);
+//                                    is = httpurl.openStream();
+//                                    final Bitmap bm = BitmapFactory.decodeStream(is);
+//                                    runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            imageView.setImageBitmap(bm);
+//                                        }
+//                                    });
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+
+                            }
+                        });
+                        t.start();
+                    }
+                });
+                builder.show();
 
             }
         });
