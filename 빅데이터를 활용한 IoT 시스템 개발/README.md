@@ -17,4 +17,11 @@
 4. 맵리듀스
 5. 하이브 ( [0924_하둡.md](./0924_하둡.md) )
 6. 로그 ( [0928_하둡.md](./0928_하둡.md) )
-7. 
+
+## 안드로이드
+
+> 예제 위주
+
+* AlertDialog Custom
+* SharedPreferences
+* Permission
