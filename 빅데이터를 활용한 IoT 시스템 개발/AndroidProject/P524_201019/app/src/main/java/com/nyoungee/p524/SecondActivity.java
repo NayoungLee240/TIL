@@ -31,7 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
-    String url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20201018";
+    String url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20201019";
     ListView listView;
     LinearLayout container;
     ArrayList<Movie> list;
@@ -49,34 +49,48 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+                LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                View alertView = inflater.inflate(R.layout.content, null);
+
+                final ImageView img = alertView.findViewById(R.id.movieImage);
+                String cd = list.get(position).getMovieCd();
+                final String url2 = "http://192.168.55.114/android/img/"+cd+".jpg";
+
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        URL httpurl = null;
+                        InputStream is = null;
+                        try {
+                            httpurl = new URL(url2);
+                            is = httpurl.openStream();
+                            final Bitmap bm = BitmapFactory.decodeStream(is);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    img.setImageBitmap(bm);
+                                }
+                            });
+                        } catch (Exception e) {
+                            img.setImageResource(R.drawable.ic_launcher_background);
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+                t.start();
+
+                TextView title = alertView.findViewById(R.id.movieName);
+                title.setText(list.get(position).getMovieNm());
+                TextView open = alertView.findViewById(R.id.movieOpen);
+                open.setText("개봉일 "+list.get(position).getOpenDt());
+
                 AlertDialog.Builder builder= new AlertDialog.Builder(SecondActivity.this);
 
-                builder.setTitle(list.get(position).movieNm);
+                builder.setView(alertView);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-//                                URL httpurl = null;
-//                                InputStream is = null;
-//                                try {
-//                                    httpurl = new URL(url);
-//                                    is = httpurl.openStream();
-//                                    final Bitmap bm = BitmapFactory.decodeStream(is);
-//                                    runOnUiThread(new Runnable() {
-//                                        @Override
-//                                        public void run() {
-//                                            imageView.setImageBitmap(bm);
-//                                        }
-//                                    });
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-
-                            }
-                        });
-                        t.start();
                     }
                 });
                 builder.show();
@@ -120,7 +134,7 @@ public class SecondActivity extends AppCompatActivity {
 //            JSONArray ja = null;
             try {
                 JSONObject j = new JSONObject(s);
-                Log.d("Test","Here");
+
 //                JSONArray j= new JSONArray(s);
                 JSONObject j1 = j.getJSONObject("boxOfficeResult");
 
@@ -135,6 +149,7 @@ public class SecondActivity extends AppCompatActivity {
                     String audiAcc = jo.getString("audiAcc");
                     Movie item = new Movie(rank,rankInten,movieCd,movieNm,openDt,audiAcc);
                     list.add(item);
+                    Log.d("Test","Here:"+movieCd+","+movieNm);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -198,8 +213,34 @@ public class SecondActivity extends AppCompatActivity {
             }
             rankInten.setText(ri);
 
-            ImageView img = itemView.findViewById(R.id.imageView);
-            img.setImageResource(R.drawable.ic_launcher_background);
+            final ImageView img = itemView.findViewById(R.id.imageView);
+
+            String cd = list.get(position).getMovieCd();
+            final String url2 = "http://192.168.55.114/android/img/"+cd+".jpg";
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    URL httpurl = null;
+                    InputStream is = null;
+                    try {
+                        httpurl = new URL(url2);
+                        is = httpurl.openStream();
+                        final Bitmap bm = BitmapFactory.decodeStream(is);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                img.setImageBitmap(bm);
+                            }
+                        });
+                    } catch (Exception e) {
+                        img.setImageResource(R.drawable.ic_launcher_background);
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            t.start();
 
             return itemView;
         }

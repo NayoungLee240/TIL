@@ -1,7 +1,8 @@
 영화 순위 리스트
 
-더 해야할 것
+![image-20201020095548184](md-images/image-20201020095548184.png)
 
-* list click시 상세정보 받아오기
+![image-20201020095506739](md-images/image-20201020095506739.png)
 
-  http://kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do?serviceId=searchDailyBoxOffice
+![image-20201020095527978](md-images/image-20201020095527978.png)
+

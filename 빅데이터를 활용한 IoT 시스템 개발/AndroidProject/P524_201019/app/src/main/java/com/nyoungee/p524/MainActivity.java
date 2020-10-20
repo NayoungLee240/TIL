@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         String id = tx_id.getText().toString();
         String pwd = tx_pwd.getText().toString();
         Log.d("TEST",id+","+pwd);
-        String url = "http://192.168.0.18/android/login.jsp";
+        String url = "http://192.168.55.114/android/login.jsp";
         url += "?id="+id+"&pwd="+pwd;
         httpAsync = new HttpAsync();
         httpAsync.execute(url);
