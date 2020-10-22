@@ -15,3 +15,12 @@
 
 설정 페이지 정보 dialog로 추가
 
+
+
+Key setting
+
+1. google map
+   - res/values/google_maps_api.xml
+   - MapsFragment.java
+2. Naver Search
+   * ApiNaver.java
