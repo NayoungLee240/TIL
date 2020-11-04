@@ -202,13 +202,15 @@
   //계정활성화
   $ sudo vi /etc/ssh/sshd_config
   PermitRootLogin yes >>\#제거, 활성
-  PasswordAuthentication no를 yes로 변경
+  PasswordAuthentication no를 yes로 변경, 키가 없을 때
   $ sudo mkdir /root/.ssh
   $ sudo cp /home/ec2-user/.ssh/authorized_keys /root/.ssh
   $ sudo service sshd restart
   //root로 사용자 전환
   $ su - root
   ```
+
+* JDK 1.8.0-261
 
 * eclipse - 링크 https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-06/R/eclipse-jee-2020-06-R-linux-gtk-x86_64.tar.gz
 
